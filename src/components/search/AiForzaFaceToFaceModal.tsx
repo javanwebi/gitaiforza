@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { AiForzaExperience } from '../forza/AiForzaExperience';
+import { AiForzaCallExperience } from '../forza/AiForzaCallExperience';
 
 export interface AiForzaFaceToFaceModalProps {
   isOpen: boolean;
@@ -17,34 +17,25 @@ export const AiForzaFaceToFaceModal: React.FC<AiForzaFaceToFaceModalProps> = ({
   useEffect(() => {
     if (!isOpen) return;
 
-    // Prevent background scrolling when full-screen cinematic modal is open
+    // Prevent background scrolling when full-screen call experience is open
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // Support ESC key to exit
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 w-screen h-screen min-h-[100dvh] overflow-hidden bg-[#0A0D12]"
+      className="fixed inset-0 z-50 w-screen h-screen min-h-[100dvh] overflow-hidden bg-[#04060a]"
       role="dialog"
       aria-modal="true"
-      aria-label="AI FORZA Face-to-Face Cinematic Experience"
+      aria-label="AI FORZA Voice Call Experience"
     >
-      <AiForzaExperience onClose={onClose} showCloseButton={true} />
+      <AiForzaCallExperience onClose={onClose} />
     </div>
   );
 };
