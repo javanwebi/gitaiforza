@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import './forzaParticle.css';
+import './ui.css';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'ghost' | 'default';
@@ -10,11 +10,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   { variant = 'ghost', size = 'sm', className = '', type = 'button', ...props },
   ref
 ) {
+  const sizeClass = size === 'icon' ? 'ui-button-icon' : size === 'sm' ? 'ui-button-sm' : '';
   return (
     <button
       ref={ref}
       type={type}
-      className={`ui-button ui-button-${size} ${className}`}
+      className={`ui-button ${sizeClass} ${className}`}
       {...props}
     />
   );
